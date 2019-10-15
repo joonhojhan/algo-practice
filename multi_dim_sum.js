@@ -10,3 +10,18 @@ function multiDimSum(arr) {
 	}
 	return sum;
 }
+
+function multiDimSumFlatten(arr) {
+	return String(arr)
+		.split(',')
+		.reduce((acc, el) => (acc += Number(el)), 0);
+}
+
+console.log(multiDimSum([1, 2, 3]));
+console.log(multiDimSum([1, [2], 3]));
+console.log(multiDimSum([1, [2, [3]]]));
+console.log(multiDimSum([1, [2, [3, 4]]]));
+console.log(multiDimSumFlatten([1, 2, 3]));
+console.log(multiDimSumFlatten([1, [2], 3]));
+console.log(multiDimSumFlatten([1, [2, [3]]]));
+console.log(multiDimSumFlatten([1, [2, [3, 4]]]));
