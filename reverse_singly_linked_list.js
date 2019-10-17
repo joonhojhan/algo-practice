@@ -1,4 +1,4 @@
-var reverseList = head => {
+const reverseList = head => {
 	let prev = null,
 		curr = head,
 		next = null;
