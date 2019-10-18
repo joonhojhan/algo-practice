@@ -21,12 +21,17 @@ const minNumberOfJumps = a => {
 	for (let i = 1; i < a.length - 1; i++) {
 		// maxReach is set to the greater number between current maxReach and position in the array + value at position
 		maxReach = Math.max(maxReach, a[i] + i);
+		// decrement steps
 		steps--;
+		// if no steps left, you must jump
 		if (steps === 0) {
+			// increment jump
 			jumps++;
+			// set steps to how far you can reach in the array minus current index
 			steps = maxReach - i;
 		}
 	}
+	// return jumps plus 1 for initial jump from start
 	return jumps + 1;
 };
 
