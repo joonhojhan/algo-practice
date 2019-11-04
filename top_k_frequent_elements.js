@@ -1,5 +1,12 @@
 /*
 Given a non-empty array of integers, return the k most frequent elements.
+
+Note:
+You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
+Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+
+O(n) space
+O(nk) time
 */
 const topKFrequent = function(nums, k) {
 	const freq = {};

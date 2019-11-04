@@ -39,7 +39,7 @@ const helper = (grid, n, col) => {
 	for (let i = 0; i < n; i++) {
 		const valid = isValid(i, col, n);
 		if (valid) {
-			grid[i][col] === 'Q';
+			grid[i][col] = 'Q';
 			res = helper(grid, n, col + 1);
 		}
 		return res;
