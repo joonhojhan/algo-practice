@@ -20,4 +20,4 @@ const permute = nums => {
 	return results;
 };
 
-console.log(permute([1, 2, 3]));
+console.log(permute(['p', 'o', 'p']));
