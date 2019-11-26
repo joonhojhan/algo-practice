@@ -4,6 +4,7 @@ Given a 2D board and a word, find if the word exists in the grid.
 The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
 */
 
+// Returns array equivalent to array passed in
 const copyArr = function(arr) {
 	const copy = [];
 	for (let i = 0; i < arr.length; i++) {
@@ -16,13 +17,19 @@ const copyArr = function(arr) {
 };
 
 const backtrack = function(board, row, col, word, currWord) {
+	// return true if word is current word
 	if (word === currWord) return true;
+	// return false if row or col is out of bounds
 	if (row < 0 || row >= board.length || col < 0 || col >= board[row].length)
 		return false;
+	// if current word is equal to word sliced at length of current word
 	if (currWord === word.slice(0, currWord.length)) {
 		let currLetter = board[row][col];
+		// copy board because java
 		let newBoard = copyArr(board);
+		// mark places you've checked
 		newBoard[row][col] = 1;
+		// if backtrack in each direction with new current word returns true, return true
 		if (backtrack(newBoard, row - 1, col, word, currWord + currLetter)) return true;
 		if (backtrack(newBoard, row + 1, col, word, currWord + currLetter)) return true;
 		if (backtrack(newBoard, row, col - 1, word, currWord + currLetter)) return true;
