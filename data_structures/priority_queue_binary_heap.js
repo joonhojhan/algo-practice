@@ -1,3 +1,7 @@
+/*
+Priority Queue using a Min Binary Heap
+*/
+
 class PriorityQueueBinaryHeap {
 	constructor() {
 		this.items = [];
@@ -5,7 +9,7 @@ class PriorityQueueBinaryHeap {
 
 	// returns child indexes of index provided
 	childIndexes(idx) {
-		return [this.items[idx * 2 + 1], this.items[idx * 2 + 2]];
+		return [idx * 2 + 1, idx * 2 + 2];
 	}
 
 	// returns parent index of index provided
@@ -18,15 +22,15 @@ class PriorityQueueBinaryHeap {
 		[this.items[idx1], this.items[idx2]] = [this.items[idx2], this.items[idx1]];
 	}
 
-	// takes last item in the binary heap and checks against its parent and swaps if priority of item is greater than priority of parent
+	// takes last item in the binary heap and checks against its parent and swaps if priority of item is less than priority of parent
 	// this repeats until in correct position or at the top of the heap
 	heapifyUp() {
 		// initialize currentIdx pointer to last index of binary heap
 		let currentIdx = this.items.length - 1;
-		// while currentIdx is not at the top of the binary heap and the priority of the current index's priority is greater than its parent index's priority
+		// while currentIdx is not at the top of the binary heap and the priority of the current index's priority is les than its parent index's priority
 		while (
 			currentIdx > 0 &&
-			this.items[currentIdx].priority >
+			this.items[currentIdx].priority <
 				this.items[this.parentIndex(currentIdx)].priority
 		) {
 			// swap current index and parent index
@@ -41,8 +45,8 @@ class PriorityQueueBinaryHeap {
 		this.heapifyUp();
 	}
 
-	heapifyDown() {
-		let currentIdx = 0;
+	heapifyDown(idx = 0) {
+		let currentIdx = idx;
 		let [left, right] = this.childIndexes(currentIdx);
 		let largerIdx;
 		const length = this.items.length;
@@ -50,13 +54,13 @@ class PriorityQueueBinaryHeap {
 		while (left < length) {
 			// if right child exists
 			if (right < length)
-				// set largerIdx equal to the index of the child with greater priority
+				// set largerIdx equal to the index of the child with lesser priority
 				largerIdx =
-					this.items[left].priority >= this.items[right].priority ? left : right;
+					this.items[left].priority <= this.items[right].priority ? left : right;
 			// set largerIdx to left index by default
 			else largerIdx = left;
-			// if priority of currentIdx is less than the priority of largerIdx (child with larger priority)
-			if (this.items[currentIdx].priority < this.items[largerIdx].priority) {
+			// if priority of currentIdx is greater than the priority of largerIdx (child with larger priority)
+			if (this.items[currentIdx].priority > this.items[largerIdx].priority) {
 				// swap largerIdx and currentIdx
 				this.swap(largerIdx, currentIdx);
 				// reassign current index to larger index
@@ -68,27 +72,40 @@ class PriorityQueueBinaryHeap {
 		}
 	}
 
-	popMax() {
+	// removes the greatets priority node from queue
+	popMin() {
 		const max = this.items[0];
 		this.items[0] = this.items.pop();
 		this.heapifyDown();
 		return max.data;
 	}
 
+	// removes the node at specific idx in priority queue
+	popNode(idx) {
+		const node = this.items[idx];
+		this.items[idx] = this.items.pop();
+		this.heapifyDown(idx);
+		return node.data;
+	}
+
+	// peek at greatest priority node
 	peek() {
 		return this.items[0].data;
 	}
 }
-// let binaryHeap = new PriorityQueue();
-// binaryHeap.enqueue(new Node(41));
-// binaryHeap.enqueue(new Node(39));
-// binaryHeap.enqueue(new Node(33));
-// binaryHeap.enqueue(new Node(18));
-// binaryHeap.enqueue(new Node(27));
-// binaryHeap.enqueue(new Node(12));
-// binaryHeap.enqueue(new Node(55));
-// console.log(binaryHeap.dequeue());
-// console.log(binaryHeap.dequeue());
-// console.log(binaryHeap.dequeue());
+// let binaryHeap = new PriorityQueueBinaryHeap();
+// binaryHeap.insert(41, 1);
+// binaryHeap.insert(39, 2);
+// binaryHeap.insert(33, 3);
+// binaryHeap.insert(18, 4);
+// binaryHeap.insert(27, 5);
+// binaryHeap.insert(12, 6);
+// binaryHeap.insert(55, 7);
+// console.log(binaryHeap.popNode(1));
+// console.log(binaryHeap.popNode(2));
+// console.log(binaryHeap.popNode(3));
+// binaryHeap.insert(100, 0);
 
-// binaryHeap.getValues();
+// console.log(binaryHeap.items);
+
+module.exports = PriorityQueueBinaryHeap;

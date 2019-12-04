@@ -26,4 +26,6 @@ graph.addEdge('C', 'D', 2);
 graph.addEdge('D', 'F', 1);
 graph.addEdge('F', 'C', 4);
 graph.addEdge('F', 'E', 1);
-console.log(graph.adjacencyList);
+// console.log(graph.adjacencyList);
+
+module.exports = WeightedGraph;
