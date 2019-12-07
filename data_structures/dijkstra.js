@@ -121,6 +121,36 @@ test3.addEdge('E', 'F', 1);
 test3.addEdge('E', 'Fullstack Academy', 4);
 test3.addEdge('F', 'Fullstack Academy', 2);
 
+const test4 = new Graph();
+test4.addVertex('A');
+test4.addVertex('B');
+test4.addVertex('C');
+test4.addVertex('D');
+test4.addVertex('E');
+test4.addEdge('A', 'B', 3);
+test4.addEdge('A', 'C', 1);
+test4.addEdge('B', 'C', 7);
+test4.addEdge('B', 'D', 5);
+test4.addEdge('B', 'E', 1);
+test4.addEdge('C', 'D', 2);
+test4.addEdge('D', 'E', 7);
+
+const test5 = new Graph();
+test5.addVertex('A');
+test5.addVertex('B');
+test5.addVertex('C');
+test5.addVertex('D');
+test5.addVertex('E');
+test5.addVertex('F');
+test5.addEdge('A', 'B', 8);
+test5.addEdge('A', 'C', 10);
+test5.addEdge('B', 'D', 11);
+test5.addEdge('B', 'E', 11);
+test5.addEdge('C', 'D', 7);
+test5.addEdge('C', 'E', 9);
+test5.addEdge('D', 'F', 9);
+test5.addEdge('E', 'F', 9);
+
 console.log('Test 1 : From A to A :', dijkstrasAlgo('A', 'A', test));
 console.log('Test 1 : From A to B :', dijkstrasAlgo('A', 'B', test));
 console.log('Test 1 : From A to C :', dijkstrasAlgo('A', 'C', test));
@@ -134,3 +164,7 @@ console.log(
 	'Test 3 : From Home to Fullstack Academy :',
 	dijkstrasAlgo('Home', 'Fullstack Academy', test3)
 );
+
+console.log('Test 4 : From C to E :', dijkstrasAlgo('C', 'E', test4));
+
+console.log('Test 5 : From A to F :', dijkstrasAlgo('A', 'F', test5));

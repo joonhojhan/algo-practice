@@ -83,7 +83,8 @@ class PriorityQueueBinaryHeap {
 	// removes the node at specific idx in priority queue
 	popNode(idx) {
 		const node = this.items[idx];
-		this.items[idx] = this.items.pop();
+		if (idx === this.items.length - 1) this.items.pop();
+		else this.items[idx] = this.items.pop();
 		this.heapifyDown(idx);
 		return node.data;
 	}
@@ -94,18 +95,18 @@ class PriorityQueueBinaryHeap {
 	}
 }
 // let binaryHeap = new PriorityQueueBinaryHeap();
-// binaryHeap.insert(41, 1);
-// binaryHeap.insert(39, 2);
-// binaryHeap.insert(33, 3);
-// binaryHeap.insert(18, 4);
-// binaryHeap.insert(27, 5);
-// binaryHeap.insert(12, 6);
-// binaryHeap.insert(55, 7);
-// console.log(binaryHeap.popNode(1));
-// console.log(binaryHeap.popNode(2));
-// console.log(binaryHeap.popNode(3));
-// binaryHeap.insert(100, 0);
+// binaryHeap.insert('A', 0);
+// binaryHeap.insert('B', 5);
+// binaryHeap.insert('C', 6);
+// binaryHeap.insert('D', 7);
+// binaryHeap.insert('E', 8);
+// binaryHeap.insert('F', 9);
+// binaryHeap.insert('G', 10);
+// binaryHeap.insert('H', 3);
+// binaryHeap.insert('I', 1);
+// console.log(binaryHeap.popNode(8));
+// // binaryHeap.insert('B', 8);
 
-// console.log(binaryHeap.items);
+// console.log('after', binaryHeap.items);
 
 module.exports = PriorityQueueBinaryHeap;
