@@ -1,6 +1,5 @@
 const fib = n => {
-	let f = 0;
-	let F = 1;
+	let [f, F] = [0, 1];
 	for (let i = 0; i < n; i++) {
 		[f, F] = [F, f + F];
 	}
