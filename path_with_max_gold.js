@@ -37,7 +37,7 @@ const getMaximumGold = function(grid) {
 	let sums = [];
 	for (let row = 0; row < grid.length; row++) {
 		for (let col = 0; col < grid[row].length; col++) {
-			sums.push(backtrack(grid, row, col, 0, sums));
+			if (grid[row][col] !== 0) sums.push(backtrack(grid, row, col, 0, sums));
 		}
 	}
 	return Math.max(...sums);
