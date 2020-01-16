@@ -25,8 +25,10 @@ const coinChange = (coins, amount) => {
 				minCoins[i] = Math.min(minCoins[i], minCoins[i - coins[j]] + 1);
 		}
 	}
+	console.log(minCoins);
 	return minCoins[amount] > amount ? -1 : minCoins[amount];
 };
 
 console.log(coinChange([1, 2, 5], 11) === 3);
 console.log(coinChange([2], 3) === -1);
+console.log(coinChange([2, 4], 7) === -1);
