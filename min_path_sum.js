@@ -22,4 +22,10 @@ const minPathSum = function(grid) {
 	return grid[grid.length - 1][grid[grid.length - 1].length - 1];
 };
 
-console.log(minPathSum([[1, 3, 1], [1, 5, 1], [4, 2, 1]]));
+console.log(
+	minPathSum([
+		[1, 3, 1],
+		[1, 5, 1],
+		[4, 2, 1],
+	])
+);
