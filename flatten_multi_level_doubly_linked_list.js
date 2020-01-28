@@ -61,10 +61,9 @@ Merging the serialization of each level and removing trailing nulls we obtain:
 
 const flatten = function(head) {
 	let curr = head;
-	let next;
 	while (curr) {
+		let next = curr.next;
 		if (curr.child) {
-			next = curr.next;
 			curr.next = flatten(curr.child);
 			curr.next.prev = curr;
 			curr.child = null;
