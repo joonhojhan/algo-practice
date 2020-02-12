@@ -36,7 +36,7 @@ const breakPalindrome = function(str) {
 			return str.join('');
 		}
 	}
-	// if no characters changed to 'a' to break palindrome, change last character to 'b' to be the next lexicographical string
+	// if no characters changed to 'a' to break paliyndrome, change last character to 'b' to be the next lexicographical string
 	str[str.length - 1] = 'b';
 	// return str
 	return str.join('');
