@@ -56,4 +56,5 @@ const levenshteinDistance = (word1, word2) => {
 	return table[table.length - 1][table[0].length - 1];
 };
 
-console.log(levenshteinDistance('abc', 'yabde'));
+console.log(levenshteinDistance('abc', 'yabde') === 3);
+console.log(levenshteinDistance('rosettacode', 'raisethysword') === 8);
