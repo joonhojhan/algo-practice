@@ -21,6 +21,29 @@ const uniquePaths = function(m, n) {
 	return grid[0][m - 1];
 };
 
+// brute force recursive solution, time limit exceeded on LeetCode
+// const uniquePaths = function(m, n) {
+// 	let grid = [];
+// 	let res = 0;
+// 	for (let i = 0; i < n; i++) {
+// 		grid[i] = Array(m).fill(1);
+// 	}
+// 	const helper = (row, col) => {
+// 		if (row === m - 1 && col === n - 1) {
+// 			res++;
+// 			return;
+// 		}
+// 		if (row >= m || col >= n) {
+// 			return;
+// 		}
+// 		helper(row + 1, col);
+// 		helper(row, col + 1);
+// 	};
+// 	helper(0, 0);
+// 	return res;
+// };
+
 console.log(uniquePaths(3, 7) === 28);
 console.log(uniquePaths(2, 3) === 3);
 console.log(uniquePaths(4, 4) === 20);
+console.log(uniquePaths(19, 13) === 86493225);
