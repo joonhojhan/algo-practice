@@ -1,9 +1,7 @@
-class Node {
-	constructor(data, priority) {
-		this.data = data;
-		this.priority = priority;
-		this.next = null;
-	}
+function Node(data, priority) {
+	this.data = data;
+	this.priority = priority;
+	this.next = null;
 }
 
 class PriorityQueue {

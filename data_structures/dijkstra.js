@@ -5,13 +5,13 @@ Dijkstras Algorithm
 const Graph = require('./weighted_graph');
 const PriorityQueue = require('./priority_queue_binary_heap');
 
-const dijkstrasAlgo = function(start, end, graph) {
+const dijkstrasAlgo = function (start, end, graph) {
 	// initialize priority queue for distances and previous object to keep track of path
 	const distances = new PriorityQueue();
 	// initialize prev to keep track of path
 	const prev = {};
 	// initialize distances pq to keep track of shortest distances from start
-	Object.keys(graph.adjacencyList).forEach(v => {
+	Object.keys(graph.adjacencyList).forEach((v) => {
 		if (start === v) distances.insert(v, 0);
 		else distances.insert(v, Infinity);
 		prev[v] = null;
@@ -22,20 +22,20 @@ const dijkstrasAlgo = function(start, end, graph) {
 	const visited = new Set([]);
 	// loop while the end vertex is not the highest priority vertex in pq
 	while (distances.peek() !== end) {
-		let currDistance = distances.items.find(el => el.data === distances.peek())
+		const currDistance = distances.items.find((el) => el.data === distances.peek())
 			.priority; // distance of current chosen vertex
 		// choose the vertex with the shortest distance from A
-		let curr = distances.popMin();
+		const curr = distances.popMin();
 		// add current chosen vertex to visited
 		visited.add(curr);
 		// for each neighbor of current chosen vertex
-		for (let v of graph.adjacencyList[curr]) {
+		for (const v of graph.adjacencyList[curr]) {
 			// only check vertex if it hasn't been visited
 			if (!visited.has(v.node)) {
 				// find that vertex in distances pq and update distance
 				for (let i = 0; i < distances.items.length; i++) {
 					// vertex from distances pq
-					let node = {
+					const node = {
 						data: distances.items[i].data,
 						priority: distances.items[i].priority,
 					};

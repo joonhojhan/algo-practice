@@ -12,15 +12,15 @@ class MaxBinaryHeap {
 		this.values.push(value);
 		// initialize index to be the last position in the array
 		let childIdx = this.values.length - 1;
-		let child = this.values[childIdx];
+		const child = this.values[childIdx];
 		// loop until the index reaches the top of the heap
 		while (childIdx) {
 			// initialize parent index to be the floor of (index - 1 / 2)
-			let parentIdx = Math.floor((childIdx - 1) / 2);
-			let parent = this.values[parentIdx];
+			const parentIdx = Math.floor((childIdx - 1) / 2);
+			const parent = this.values[parentIdx];
 			// break out of loop if the parent value is greater than or equal to the child value
 			if (child <= parent) break;
-			//swap the parent value and the child value
+			// swap the parent value and the child value
 			this.values[parentIdx] = child;
 			this.values[childIdx] = parent;
 			childIdx = parentIdx;
@@ -29,7 +29,7 @@ class MaxBinaryHeap {
 
 	popMax() {
 		// grab the the first element in the heap
-		let popped = this.values[0];
+		const popped = this.values[0];
 		// swap the first and the last element in theheap
 		this.values[0] = this.values[this.values.length - 1];
 		this.values[this.values.length - 1] = popped;
@@ -42,7 +42,7 @@ class MaxBinaryHeap {
 
 	// swaps elements in an array given their indexes
 	swap(idx1, idx2) {
-		let temp = this.values[idx1];
+		const temp = this.values[idx1];
 		this.values[idx1] = this.values[idx2];
 		this.values[idx2] = temp;
 	}
@@ -64,7 +64,7 @@ class MaxBinaryHeap {
 				this.values[right] > this.values[index] &&
 				this.values[left] > this.values[index]
 			) {
-				let bigger = this.values[right] > this.values[left] ? right : left;
+				const bigger = this.values[right] > this.values[left] ? right : left;
 				this.swap(bigger, index);
 				index = bigger;
 				left = index * 2 + 1;
@@ -87,7 +87,7 @@ class MaxBinaryHeap {
 		}
 	}
 }
-let binaryHeap = new MaxBinaryHeap();
+const binaryHeap = new MaxBinaryHeap();
 binaryHeap.insert(41);
 binaryHeap.insert(39);
 binaryHeap.insert(33);
