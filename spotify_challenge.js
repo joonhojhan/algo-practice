@@ -1,4 +1,4 @@
-let prompt =
+const prompt =
 	'If you want to jumpstart the process of talking to us about this role, here’s a little challenge: write a program that outputs the largest unique set of characters that can be removed from this paragraph without letting its length drop below 50.';
 
 // let frequencyCounter = function(str) {
@@ -10,11 +10,11 @@ let prompt =
 // 	return hash;
 // };
 
-let frequencyCounter = function(str) {
-	let frequencies = new Map();
-	let n = str.length;
+const frequencyCounter = function (str) {
+	const frequencies = new Map();
+	const n = str.length;
 	for (let i = 0; i < n; i++) {
-		let char = str[i];
+		const char = str[i];
 		if (frequencies.get(char)) {
 			frequencies.set(char, frequencies.get(char) + 1);
 		} else {
@@ -24,10 +24,10 @@ let frequencyCounter = function(str) {
 	return frequencies;
 };
 
-let largestUniqueSet = function(str, limit) {
-	let res = [];
-	let frequencies = frequencyCounter(str);
-	let sortedFrequencies = [];
+const largestUniqueSet = function (str, limit) {
+	const res = [];
+	const frequencies = frequencyCounter(str);
+	const sortedFrequencies = [];
 	let length = str.length;
 	let lastRemoved = null;
 	frequencies.forEach((val, key) => {

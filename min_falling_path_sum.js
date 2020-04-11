@@ -24,8 +24,8 @@ Note:
 -100 <= A[i][j] <= 100
 */
 
-const minFallingPathSum = function(A) {
-	let dp = [];
+const minFallingPathSum = function (A) {
+	const dp = [];
 	for (let i = 0; i < A.length; i++) {
 		dp.push([]);
 		for (let j = 0; j < A[0].length; j++) {
@@ -35,9 +35,9 @@ const minFallingPathSum = function(A) {
 	}
 	for (let i = 1; i < A.length; i++) {
 		for (let j = 0; j < A[0].length; j++) {
-			let leftDiag = dp[i - 1][j - 1] + A[i][j];
-			let above = dp[i - 1][j] + A[i][j];
-			let rightDiag = dp[i - 1][j + 1] + A[i][j];
+			const leftDiag = dp[i - 1][j - 1] + A[i][j];
+			const above = dp[i - 1][j] + A[i][j];
+			const rightDiag = dp[i - 1][j + 1] + A[i][j];
 			if (j === 0) dp[i][j] = Math.min(above, rightDiag);
 			else if (j === A[0].length - 1) dp[i][j] = Math.min(above, leftDiag);
 			else dp[i][j] = Math.min(leftDiag, above, rightDiag);

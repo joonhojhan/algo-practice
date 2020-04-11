@@ -16,8 +16,8 @@ function merge(intervals) {
 	if (!intervals.length) return intervals;
 	intervals.sort((a, b) => a[0] - b[0]);
 	let prev = intervals[0];
-	let res = [prev];
-	for (let curr of intervals) {
+	const res = [prev];
+	for (const curr of intervals) {
 		if (curr[0] <= prev[1]) {
 			prev[1] = Math.max(curr[1], prev[1]);
 		} else {

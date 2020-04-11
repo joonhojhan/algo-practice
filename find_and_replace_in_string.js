@@ -28,20 +28,20 @@ Notes:
 All characters in given inputs are lowercase letters.
 */
 
-const findReplaceString = function(S, indexes, sources, targets) {
+const findReplaceString = function (S, indexes, sources, targets) {
 	S = S.split('');
-	let idxArr = [];
-	let idxn = indexes.length;
+	const idxArr = [];
+	const idxn = indexes.length;
 	for (let i = 0; i < idxn; i++) {
-		let idx = indexes[i];
-		let source = sources[i];
-		let target = targets[i];
+		const idx = indexes[i];
+		const source = sources[i];
+		const target = targets[i];
 		idxArr.push({ idx, source, target });
 	}
 	idxArr.sort((a, b) => b.idx - a.idx);
 	for (let i = 0; i < idxn; i++) {
-		let curr = idxArr[i];
-		let currStr = S.slice(curr.idx, curr.idx + curr.source.length).join('');
+		const curr = idxArr[i];
+		const currStr = S.slice(curr.idx, curr.idx + curr.source.length).join('');
 		if (curr.source === currStr) S.splice(curr.idx, curr.source.length, curr.target);
 	}
 	return S.join('');

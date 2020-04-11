@@ -17,11 +17,11 @@ The relative order inside both the even and odd groups should remain as it was i
 The first node is considered odd, the second node even and so on ...
 */
 
-const oddEvenList = function(head) {
+const oddEvenList = function (head) {
 	if (!head) return head;
 	let odd = head;
 	let even = head.next;
-	let evenHead = head.next;
+	const evenHead = head.next;
 	while (odd.next && even.next) {
 		odd.next = even.next;
 		odd = odd.next;

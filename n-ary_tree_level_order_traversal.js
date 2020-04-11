@@ -14,15 +14,10 @@ Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,1
 Output: [[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]
 */
 
-const levelOrder = function(root) {
-	let res = [];
+const levelOrder = function (root) {
+	const res = [];
 	if (!root) return res;
-	let levels = new Map();
-	dft(root);
-	levels.forEach((val, key) => {
-		res.push(val);
-	});
-	return res;
+	const levels = new Map();
 	function dft(node, depth = 1) {
 		if (levels.get(depth)) {
 			levels.get(depth).push(node.val);
@@ -30,9 +25,14 @@ const levelOrder = function(root) {
 			levels.set(depth, [node.val]);
 		}
 		if (node.children.length) {
-			node.children.forEach(child => {
+			node.children.forEach((child) => {
 				dft(child, depth + 1);
 			});
 		}
 	}
+	dft(root);
+	levels.forEach((val) => {
+		res.push(val);
+	});
+	return res;
 };

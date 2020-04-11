@@ -6,11 +6,11 @@ Each element in the array represents your maximum jump length at that position.
 Determine if you are able to reach the last index.
 */
 
-const canJump = nums => {
+const canJump = (nums) => {
 	if (nums.length === 1) return true;
 	if (nums[0] === 0) return false;
-	let maxReach = nums[0],
-		steps = nums[0];
+	let maxReach = nums[0];
+	let steps = nums[0];
 	for (let i = 1; i < nums.length - 1; i++) {
 		if (!nums[i] && maxReach === i) return false;
 		maxReach = Math.max(maxReach, nums[i] + i);

@@ -24,7 +24,7 @@ matrix = [
 target = 13
 Output: false
 */
-const searchMatrix = function(matrix, target) {
+const searchMatrix = function (matrix, target) {
 	if (!matrix.length || !matrix[0].length) return false;
 	let top = 0;
 	let bottom = matrix.length - 1;
@@ -39,7 +39,7 @@ const searchMatrix = function(matrix, target) {
 	}
 	if (matrix[row][0] > target && row - 1 >= 0) row--;
 	while (left <= right) {
-		let mid = Math.floor((left + right) / 2);
+		const mid = Math.floor((left + right) / 2);
 		if (matrix[row][mid] === target) return true;
 		else if (matrix[row][mid] > target) right = mid - 1;
 		else left = mid + 1;

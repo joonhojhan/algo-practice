@@ -13,15 +13,15 @@ returns -1
 */
 
 function maxDifference(nums) {
-	let n = nums.length;
+	const n = nums.length;
 	let greatest = -1;
 	let maxRight = nums[n - 1];
 	for (let i = n - 2; i >= 0; i--) {
-		let curr = nums[i];
+		const curr = nums[i];
 		if (curr > maxRight) {
 			maxRight = curr;
 		} else {
-			let difference = maxRight - curr;
+			const difference = maxRight - curr;
 			if (difference > greatest) {
 				greatest = difference;
 			}

@@ -16,11 +16,11 @@ s = "axc", t = "ahbgdc"
 Return false.
 */
 
-const isSubsequence = function(s, t) {
-	let sn = s.length;
+const isSubsequence = function (s, t) {
+	const sn = s.length;
 	if (!sn) return true;
-	let tn = t.length;
-	let dp = Array(sn).fill(false);
+	const tn = t.length;
+	const dp = Array(sn).fill(false);
 	let dpi = 0;
 	for (let i = 0; i < tn; i++) {
 		if (dpi > sn - 1) {

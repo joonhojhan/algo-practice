@@ -57,7 +57,7 @@ function isValid(placements) {
 }
 
 function copyBoard(board) {
-	let copy = [];
+	const copy = [];
 	for (let i = 0; i < board.length; i++) {
 		copy.push(board[i]);
 	}

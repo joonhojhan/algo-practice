@@ -9,7 +9,7 @@ returns 17
 
 function getMinimumUniqueSum(arr) {
 	arr.sort((a, b) => a - b);
-	let n = arr.length;
+	const n = arr.length;
 	let sum = arr[0];
 	let previous = arr[0];
 	for (let i = 1; i < n; i++) {

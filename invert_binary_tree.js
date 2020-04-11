@@ -19,12 +19,12 @@ Output:
 9   6 3   1
 */
 
-const invertTree = function(root) {
+function invertTree(root) {
 	if (!root) return null;
-	let temp = root.left;
+	const temp = root.left;
 	root.left = root.right;
 	root.right = temp;
 	if (root.left) invertTree(root.left);
 	if (root.right) invertTree(root.right);
 	return root;
-};
+}

@@ -56,24 +56,6 @@ Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is n
 // 	return res;
 // };
 
-const longestIncreasingPath = function(matrix) {
-	// initialize variable for longest increasing path length
-	let res = 0;
-	// initialize memo of same size of matrix with all values set to -1
-	// memo repressents max path length for each position in matrix, each position corresponds to position in matrix
-	const memo = [];
-	for (let i = 0; i < matrix.length; i++) {
-		memo[i] = Array(matrix[i].length).fill(-1);
-	}
-	for (let i = 0; i < matrix.length; i++) {
-		for (let j = 0; j < matrix[i].length; j++) {
-			// for each number in matrix, if max path is greater than longest increasing path length, reassign longest increasing path length
-			res = Math.max(res, dft(matrix, i, j, -Infinity, memo));
-		}
-	}
-	return res;
-};
-
 function dft(matrix, row, col, prev, memo) {
 	// base case, if row/col is invalid or current number is less than previous number, return 0;
 	if (
@@ -95,7 +77,7 @@ function dft(matrix, row, col, prev, memo) {
 
 		for (let i = 0; i < 4; i++) {
 			// find path length for node going in each direction
-			let maxForNode =
+			const maxForNode =
 				1 + dft(matrix, row + rowDir[i], col + colDir[i], matrix[row][col], memo);
 			// reassign maxPathLength is path length for node in current direction is greater
 			maxPathLength = Math.max(maxPathLength, maxForNode);
@@ -106,6 +88,24 @@ function dft(matrix, row, col, prev, memo) {
 	// return path length found in memo for position
 	return memo[row][col];
 }
+
+const longestIncreasingPath = function (matrix) {
+	// initialize variable for longest increasing path length
+	let res = 0;
+	// initialize memo of same size of matrix with all values set to -1
+	// memo repressents max path length for each position in matrix, each position corresponds to position in matrix
+	const memo = [];
+	for (let i = 0; i < matrix.length; i++) {
+		memo[i] = Array(matrix[i].length).fill(-1);
+	}
+	for (let i = 0; i < matrix.length; i++) {
+		for (let j = 0; j < matrix[i].length; j++) {
+			// for each number in matrix, if max path is greater than longest increasing path length, reassign longest increasing path length
+			res = Math.max(res, dft(matrix, i, j, -Infinity, memo));
+		}
+	}
+	return res;
+};
 
 console.log(
 	longestIncreasingPath([

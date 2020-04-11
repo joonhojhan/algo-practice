@@ -18,13 +18,13 @@ Explanation:  After 6 moves, the array could be [3, 4, 1, 2, 5, 7].
 It can be shown with 5 or less moves that it is impossible for the array to have all unique values.
 */
 
-const minIncrementForUnique = function(A) {
+const minIncrementForUnique = function (A) {
 	A.sort((a, b) => a - b);
-	let n = A.length;
+	const n = A.length;
 	let prev = A[0];
 	let moves = 0;
 	for (let i = 1; i < n; i++) {
-		let num = A[i];
+		const num = A[i];
 		if (num <= prev) {
 			prev++;
 			moves += prev - num;

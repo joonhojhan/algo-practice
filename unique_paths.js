@@ -6,8 +6,8 @@ The robot can only move either down or right at any point in time. The robot is 
 How many possible unique paths are there?
 */
 
-const uniquePaths = function(m, n) {
-	let grid = [];
+const uniquePaths = function (m, n) {
+	const grid = [];
 	for (let i = 0; i < 2; i++) {
 		grid[i] = Array(m).fill(1);
 	}

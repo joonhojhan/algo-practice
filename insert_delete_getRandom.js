@@ -34,7 +34,7 @@ randomSet.getRandom();
 /**
  * Initialize your data structure here.
  */
-var RandomizedSet = function() {
+const RandomizedSet = function () {
 	this.hash = {};
 	this.allElements = [];
 	this.size = 0;
@@ -50,7 +50,7 @@ var RandomizedSet = function() {
  * @param {number} val
  * @return {boolean}
  */
-RandomizedSet.prototype.insert = function(val) {
+RandomizedSet.prototype.insert = function (val) {
 	if (this.hash[val] === undefined) {
 		this.hash[val] = this.size;
 		this.allElements.push(val);
@@ -65,7 +65,7 @@ RandomizedSet.prototype.insert = function(val) {
  * @param {number} val
  * @return {boolean}
  */
-RandomizedSet.prototype.remove = function(val) {
+RandomizedSet.prototype.remove = function (val) {
 	if (this.hash[val] !== undefined) {
 		this.hash[this.allElements[this.size - 1]] = this.hash[val];
 		[this.allElements[this.hash[val]], this.allElements[this.size - 1]] = [
@@ -84,7 +84,7 @@ RandomizedSet.prototype.remove = function(val) {
  * Get a random element from the set.
  * @return {number}
  */
-RandomizedSet.prototype.getRandom = function() {
+RandomizedSet.prototype.getRandom = function () {
 	return this.allElements[Math.floor(Math.random() * this.size)];
 };
 

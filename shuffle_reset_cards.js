@@ -10,9 +10,9 @@ class Deck {
 	}
 
 	shuffle() {
-		let n = this.deck.length;
+		const n = this.deck.length;
 		for (let i = 0; i < n; i++) {
-			let random = Math.floor(Math.random() * n);
+			const random = Math.floor(Math.random() * n);
 			[this.deck[i], this.deck[random]] = [this.deck[random], this.deck[i]];
 		}
 		return this.deck;
@@ -24,8 +24,8 @@ class Deck {
 	}
 }
 
-let test = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-let deck = new Deck(test);
+const test = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+const deck = new Deck(test);
 console.log(deck.deck);
 console.log(deck.shuffle());
 console.log(deck.reset());

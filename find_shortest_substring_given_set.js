@@ -6,17 +6,17 @@ For example, given the string "figehaeci" and the set of characters {a, e, i}, y
 If there is no substring containing all the characters in the set, return null.
 */
 
-const findSubstring = function(str, set) {
-	let shortest = str + ' ';
-	let n = str.length;
+const findSubstring = function (str, set) {
+	let shortest = `${str} `;
+	const n = str.length;
 	for (let i = 0; i < n; i++) {
 		for (let j = i + set.size; j < n + 1; j++) {
-			let currSubstring = str.slice(i, j);
-			let m = currSubstring.length;
-			let temp = new Set(set);
+			const currSubstring = str.slice(i, j);
+			const m = currSubstring.length;
+			const temp = new Set(set);
 			let reassigned = false;
 			for (let k = 0; k < m; k++) {
-				let char = currSubstring[k];
+				const char = currSubstring[k];
 				if (temp.has(char)) {
 					temp.delete(char);
 				}

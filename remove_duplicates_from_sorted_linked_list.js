@@ -13,7 +13,7 @@ Example 3:
 Input: 1->1->1
 Output: null
 */
-var deleteDuplicates = function(head) {
+const deleteDuplicates = function (head) {
 	if (!head) return head;
 	let prev = head;
 	let curr = head;

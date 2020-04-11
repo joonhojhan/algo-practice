@@ -26,10 +26,10 @@ Note that in some languages such as Java, there is no unsigned integer type. In 
 In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 3 above the input represents the signed integer -3.
 */
 
-const hammingWeight1 = function(n) {
+const hammingWeight1 = function (n) {
 	let ones = 0;
 	for (let i = 32; i >= 0; i--) {
-		let divider = Math.pow(2, i);
+		const divider = 2 ** i;
 		if (n % divider < n) {
 			n -= divider;
 			ones++;
@@ -38,7 +38,7 @@ const hammingWeight1 = function(n) {
 	return ones;
 };
 
-const hammingWeight2 = function(n) {
+const hammingWeight2 = function (n) {
 	if (!n) return 0;
 	let ones = 1;
 	while (n > 2) {
@@ -48,11 +48,11 @@ const hammingWeight2 = function(n) {
 	return ones;
 };
 
-console.log(hammingWeight1(Math.pow(2, 32)));
+console.log(hammingWeight1(2 ** 32));
 console.log(hammingWeight1(9348754));
 console.log(hammingWeight1(123));
 console.log(hammingWeight1(0));
-console.log(hammingWeight2(Math.pow(2, 32)));
+console.log(hammingWeight2(2 ** 32));
 console.log(hammingWeight2(9348754));
 console.log(hammingWeight2(123));
 console.log(hammingWeight2(0));

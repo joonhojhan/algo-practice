@@ -32,20 +32,20 @@ Do not assume the meetings are in order. The meeting times are coming from multi
 
 Write a solution that's efficient even when we can't put a nice upper bound on the numbers representing our time ranges. Here we've simplified our times down to the number of 30-minute slots past 9:00 am. But we want the function to work even for very large numbers, like Unix timestamps. In any case, the spirit of the challenge is to merge meetings where startTime and endTime don't have an upper bound.
 */
-const mergeRanges = function(meetings) {
+const mergeRanges = function (meetings) {
 	meetings.sort((a, b) => a.startTime - b.startTime);
-	let res = [];
+	const res = [];
 	let currIdx = 0;
 	while (currIdx < meetings.length) {
-		let curr = meetings[currIdx];
-		let tempNext = meetings[currIdx + 1];
+		const curr = meetings[currIdx];
+		const tempNext = meetings[currIdx + 1];
 		let tempEnd = curr.endTime;
 		if (
 			currIdx !== meetings.length - 1 &&
 			(curr.startTime === tempNext.startTime || curr.endTime >= tempNext.startTime)
 		) {
 			for (let nextIdx = currIdx + 1; nextIdx < meetings.length; nextIdx++) {
-				let next = meetings[nextIdx];
+				const next = meetings[nextIdx];
 				if (next.startTime <= curr.endTime) {
 					tempEnd = Math.max(tempEnd, next.endTime);
 					if (nextIdx === meetings.length - 1) {
@@ -56,7 +56,7 @@ const mergeRanges = function(meetings) {
 					break;
 				}
 			}
-			let newTime = { startTime: curr.startTime, endTime: tempEnd };
+			const newTime = { startTime: curr.startTime, endTime: tempEnd };
 			if (
 				currIdx >= meetings.length ||
 				newTime.endTime < meetings[currIdx].startTime

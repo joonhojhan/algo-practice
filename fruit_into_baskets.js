@@ -11,12 +11,12 @@ You have two baskets, and each basket can carry any quantity of fruit, but you w
 
 What is the total amount of fruit you can collect with this procedure?
 */
-const totalFruit = function(fruits) {
-	let seen = {};
+const totalFruit = function (fruits) {
+	const seen = {};
 	let ans = 0;
 	let window = 0;
 	for (let i = 0; i < fruits.length; i++) {
-		let fruit = fruits[i];
+		const fruit = fruits[i];
 		if (seen[fruit]) seen[fruit]++;
 		else seen[fruit] = 1;
 		while (Object.keys(seen).length > 2) {

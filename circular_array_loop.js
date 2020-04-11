@@ -19,28 +19,30 @@ Input: [-2,1,-1,-2,-2]
 Output: false
 Explanation: The movement from index 1 -> 2 -> 1 -> ... is not a cycle, because movement from index 1 -> 2 is a forward movement, but movement from index 2 -> 1 is a backward movement. All movements in a cycle must follow a single direction.
 */
-const circularArrayLoop = function(nums) {
-	const getIdx = function(idx) {
+const circularArrayLoop = function (nums) {
+	const getIdx = function (idx) {
 		if (idx > nums.length - 1) return idx % nums.length;
-		else if (idx < 0) return nums.length - ((nums.length - idx) % nums.length)
+		else if (idx < 0) {
+			return nums.length - ((nums.length - idx) % nums.length);
+		}
 		return idx;
-}
-const check = function(startIdx) {
+	};
+	const check = function (startIdx) {
 		let currentIdx = startIdx;
-		let direction = nums[startIdx] >= 0
+		const direction = nums[startIdx] >= 0;
 		let cycleCount = 0;
 		do {
-				cycleCount++;
-				if (cycleCount > nums.length) return false;
-				currentIdx = getIdx(currentIdx + nums[currentIdx]);
-				if ((nums[currentIdx] >= 0) !== direction) return false;
-		} while (currentIdx !== startIdx)
+			cycleCount++;
+			if (cycleCount > nums.length) return false;
+			currentIdx = getIdx(currentIdx + nums[currentIdx]);
+			if (nums[currentIdx] >= 0 !== direction) return false;
+		} while (currentIdx !== startIdx);
 		return cycleCount > 1;
-}
-for (let i = 0; i < nums.length; i++) {
+	};
+	for (let i = 0; i < nums.length; i++) {
 		if (check(i)) return true;
-}
-return false;
+	}
+	return false;
 };
 
 console.log(circularArrayLoop([2, -1, 1, 2, 2]) === true);

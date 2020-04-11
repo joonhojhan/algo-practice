@@ -10,9 +10,10 @@ Replace a character
 
 const levenshteinDistance = (word1, word2) => {
 	// create dp table
-	let table = [];
+	const table = [];
 	// initialize variables to keep track of which word is longer
-	let longer, shorter;
+	let longer;
+	let shorter;
 	// word1 is longer
 	if (word1.length > word2.length) {
 		longer = word1;

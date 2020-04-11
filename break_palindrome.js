@@ -21,13 +21,13 @@ Constraints:
 palindrome consists of only lowercase English letters.
 */
 
-const breakPalindrome = function(str) {
+const breakPalindrome = function (str) {
 	// if length of string is 1, it is palindrome so return ''
 	if (str.length === 1) return '';
 	str = str.split('');
 	for (let i = 0; i < str.length; i++) {
 		// j will equal i if mid point
-		let j = str.length - 1 - i;
+		const j = str.length - 1 - i;
 		// if j equals i, don't change anything because changing middle character will still create palindrome
 		if (j === i) continue;
 		// if char at i is not 'a', change to 'a' and return str

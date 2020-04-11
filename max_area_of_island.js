@@ -19,21 +19,9 @@ Example 2:
 [[0,0,0,0,0,0,0,0]]
 Given the above grid, return 0.
 */
-const maxAreaOfIsland = function(grid) {
+const maxAreaOfIsland = function (grid) {
 	let maxArea = 0;
 	let currArea = 0;
-	for (let i = 0; i < grid.length; i++) {
-		for (let j = 0; j < grid[0].length; j++) {
-			currArea = 0;
-			if (grid[i][j]) {
-				helper(grid, i, j);
-				if (currArea > maxArea) {
-					maxArea = currArea;
-				}
-			}
-		}
-	}
-	return maxArea;
 	function helper(grid, row, col) {
 		if (
 			row < 0 ||
@@ -51,6 +39,18 @@ const maxAreaOfIsland = function(grid) {
 		helper(grid, row, col - 1);
 		helper(grid, row, col + 1);
 	}
+	for (let i = 0; i < grid.length; i++) {
+		for (let j = 0; j < grid[0].length; j++) {
+			currArea = 0;
+			if (grid[i][j]) {
+				helper(grid, i, j);
+				if (currArea > maxArea) {
+					maxArea = currArea;
+				}
+			}
+		}
+	}
+	return maxArea;
 };
 
 console.log(

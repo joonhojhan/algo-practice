@@ -29,18 +29,22 @@ Input: arr = [1,2,3,4,5,6,7,8,9,10]
 Output: 5
 */
 
-const minSetSize = function(arr) {
-	let n = arr.length;
+const minSetSize = function (arr) {
+	const n = arr.length;
 	let currentTotal = n;
 	let res = 0;
-	let frequencies = {};
+	const frequencies = {};
 	for (let i = 0; i < n; i++) {
-		let num = arr[i];
-		frequencies[num] ? frequencies[num]++ : (frequencies[num] = 1);
+		const num = arr[i];
+		if (frequencies[num]) {
+			frequencies[num]++;
+		} else {
+			frequencies[num] = 1;
+		}
 	}
-	let frequenciesArray = Object.values(frequencies).sort((a, b) => b - a);
+	const frequenciesArray = Object.values(frequencies).sort((a, b) => b - a);
 	for (let i = 0; i < frequenciesArray.length; i++) {
-		let val = frequenciesArray[i];
+		const val = frequenciesArray[i];
 		if (currentTotal <= n / 2) return res;
 		currentTotal -= val;
 		res++;

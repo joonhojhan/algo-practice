@@ -10,19 +10,19 @@ returns [0, 1, -1]
 */
 
 function getMinimumDifference(a, b) {
-	let res = [];
-	let n = a.length;
+	const res = [];
+	const n = a.length;
 	for (let i = 0; i < n; i++) {
-		let hash = Array(26).fill(0);
-		let str1 = a[i];
-		let str2 = b[i];
+		const hash = Array(26).fill(0);
+		const str1 = a[i];
+		const str2 = b[i];
 		if (str1.length !== str2.length) {
 			res.push(-1);
 			continue;
 		}
-		let strn = str1.length;
+		const strn = str1.length;
 		let diff = 0;
-		let charCodeModifier = 'a'.charCodeAt(0);
+		const charCodeModifier = 'a'.charCodeAt(0);
 		for (let j = 0; j < strn; j++) {
 			hash[str1.charCodeAt(j) - charCodeModifier]++;
 		}

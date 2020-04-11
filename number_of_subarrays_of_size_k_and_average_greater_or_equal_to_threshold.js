@@ -27,17 +27,17 @@ Input: arr = [4,4,4,4], k = 4, threshold = 1
 Output: 1
 */
 
-const numOfSubarrays = function(arr, k, threshold) {
+const numOfSubarrays = function (arr, k, threshold) {
 	let res = 0;
 	let sum = 0;
-	let n = arr.length;
+	const n = arr.length;
 	let left = 0;
 	for (let i = 0; i < k; i++) {
-		let num = arr[i];
+		const num = arr[i];
 		sum += num;
 	}
 	for (let i = k; i < n + 1; i++) {
-		let num = arr[i];
+		const num = arr[i];
 		if (sum / k >= threshold) {
 			res++;
 		}

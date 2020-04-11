@@ -17,13 +17,13 @@ Input: [4,5,6,7,0,1,2]
 Output: 0
 */
 
-const findMin = function(nums) {
+const findMin = function (nums) {
 	let left = 0;
 	let right = nums.length - 1;
 	// if the first number is less than the last number or if the array has one number in it, return first number
 	if (nums[right] > nums[0] || nums.length === 1) return nums[0];
 	while (left <= right) {
-		let mid = Math.floor((left + right) / 2);
+		const mid = Math.floor((left + right) / 2);
 		// if the mid number is greater than the next number, return next number
 		if (nums[mid] > nums[mid + 1]) return nums[mid + 1];
 		// if the mid number is less than the number before it, return the mid number

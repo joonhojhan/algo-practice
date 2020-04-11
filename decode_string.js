@@ -14,20 +14,17 @@ s = "3[a2[c]]", return "accaccacc".
 s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 */
 
-const decodeString = function(s) {
-	let stack = [[]];
-	let num = [[]];
+const decodeString = function (s) {
+	const stack = [[]];
+	const num = [[]];
 	for (let i = 0; i < s.length; i++) {
-		let char = s[i];
+		const char = s[i];
 		if (!isNaN(char)) {
 			if (isNaN(s[i - 1])) num.push([]);
 			num[num.length - 1].push(char);
 		} else if (char === '[') stack.push([]);
 		else if (char === ']') {
-			let temp = stack
-				.pop()
-				.join('')
-				.repeat(num.pop().join(''));
+			const temp = stack.pop().join('').repeat(num.pop().join(''));
 			stack[stack.length - 1].push(temp);
 		} else {
 			stack[stack.length - 1].push(char);

@@ -8,15 +8,15 @@ Input: mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]
 Output: [[1,1,1,1],[1,2,2,2],[1,2,3,3]]
 */
 
-const diagonalSort = function(mat) {
-	let m = mat.length; // number of rows
-	let n = mat[0].length; // number of cols
+const diagonalSort = function (mat) {
+	const m = mat.length; // number of rows
+	const n = mat[0].length; // number of cols
 	if (m === 1 && n === 1) return mat;
 
 	// starting point, loop from top right to top left
 	for (let i = n - 1; i >= 0; i--) {
 		// sort from each starting point
-		let sorted = [];
+		const sorted = [];
 		for (let j = 0, k = i; j < m && k < n; j++, k++) {
 			sorted.push(mat[j][k]);
 		}
@@ -33,7 +33,7 @@ const diagonalSort = function(mat) {
 	// starting point, loop from top left to bottom left
 	for (let i = 1; i < m; i++) {
 		// sort from each starting point
-		let sorted = [];
+		const sorted = [];
 		for (let j = i, k = 0; j < m && k < n; j++, k++) {
 			sorted.push(mat[j][k]);
 		}

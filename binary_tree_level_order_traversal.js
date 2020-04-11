@@ -17,15 +17,10 @@ return its level order traversal as:
 ]
 */
 
-const levelOrder = function(root) {
-	let res = [];
+const levelOrder = function (root) {
+	const res = [];
 	if (!root) return res;
-	let levels = new Map();
-	dft(root);
-	levels.forEach((val, key) => {
-		res.push(val);
-	});
-	return res;
+	const levels = new Map();
 	function dft(node, depth = 1) {
 		if (levels.get(depth)) {
 			levels.get(depth).push(node.val);
@@ -39,4 +34,9 @@ const levelOrder = function(root) {
 			dft(node.right, depth + 1);
 		}
 	}
+	dft(root);
+	levels.forEach((val) => {
+		res.push(val);
+	});
+	return res;
 };

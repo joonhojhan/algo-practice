@@ -15,7 +15,7 @@ You may assume that you have an infinite number of each kind of coin.
 */
 
 const coinChange = (coins, amount) => {
-	let minCoins = [0];
+	const minCoins = [0];
 	for (let i = 0; i < amount; i++) {
 		minCoins.push(Infinity);
 	}

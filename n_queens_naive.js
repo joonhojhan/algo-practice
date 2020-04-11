@@ -5,7 +5,7 @@ This does NOT work the way the leet code problem intended.
 */
 
 function makeGrid(n) {
-	let arr = [];
+	const arr = [];
 	for (let i = 0; i < n; i++) {
 		arr.push(Array(n).fill('.'));
 	}
@@ -40,7 +40,7 @@ function isValid(grid, row, col, n) {
 }
 
 function copyBoard(board) {
-	let copy = [];
+	const copy = [];
 	for (let i = 0; i < board.length; i++) {
 		copy.push([]);
 		for (let j = 0; j < board[i].length; j++) {
@@ -52,8 +52,8 @@ function copyBoard(board) {
 
 function hasNQueens(board) {
 	let counter = 0;
-	for (let row of board) {
-		for (let position of row) {
+	for (const row of board) {
+		for (const position of row) {
 			if (position === 'Q') counter++;
 		}
 	}
@@ -69,7 +69,7 @@ function backtrack(board, res) {
 	for (let i = 0; i < board.length; i++) {
 		for (let j = 0; j < board[i].length; j++) {
 			if (isValid(board, i, j, board.length)) {
-				let newBoard = copyBoard(board);
+				const newBoard = copyBoard(board);
 				newBoard[i][j] = 'Q';
 				backtrack(newBoard, res, board.length, i, j);
 			}
@@ -81,7 +81,7 @@ function backtrack(board, res) {
 function nQueens(n) {
 	const res = [];
 	for (let col = 0; col < n; col++) {
-		let board = makeGrid(n);
+		const board = makeGrid(n);
 		board[0][col] = 'Q';
 		backtrack(board, res);
 	}

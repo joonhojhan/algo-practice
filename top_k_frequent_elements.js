@@ -8,17 +8,17 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 O(n) space
 O(nk) time
 */
-const topKFrequent = function(nums, k) {
+const topKFrequent = function (nums, k) {
 	const freq = {};
-	for (let num of nums) {
+	for (const num of nums) {
 		if (freq[num]) freq[num]++;
 		else freq[num] = 1;
 	}
-	let results = [];
+	const results = [];
 	while (results.length < k) {
 		let mostFreq = null;
 		let compare = null;
-		for (let el in freq) {
+		for (const el in freq) {
 			if (freq[el] > compare) {
 				compare = freq[el];
 				mostFreq = el;

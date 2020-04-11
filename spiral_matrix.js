@@ -1,9 +1,9 @@
-const spiralOrder = function(matrix) {
+const spiralOrder = function (matrix) {
 	if (!matrix.length) return [];
-	let res = [];
+	const res = [];
 	let [row, col] = [0, 0];
 	let d = 0;
-	let dir = {
+	const dir = {
 		0: [0, 1], // right
 		1: [1, 0], // down
 		2: [0, -1], // left

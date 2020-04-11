@@ -2,7 +2,7 @@
 Write a function that takes in two non-empty arrays of integers. The function should find the pair of numbers (one from the first array, one from the second array) whose absolute difference is closest to zero. The function should return an array containing these two numbers, with the number from the first array in the first position. Assume that there will only be one pair of numbers with the smallest difference.
 */
 
-const smallestDifference = function(arrayOne, arrayTwo) {
+const smallestDifference = function (arrayOne, arrayTwo) {
 	// Write your code here.
 	let min = Infinity;
 	let res = [];
@@ -12,8 +12,8 @@ const smallestDifference = function(arrayOne, arrayTwo) {
 	let idx1 = 0;
 	let idx2 = 0;
 	while (idx1 < arrayOne.length && idx2 < arrayTwo.length) {
-		let firstNum = arrayOne[idx1];
-		let secondNum = arrayTwo[idx2];
+		const firstNum = arrayOne[idx1];
+		const secondNum = arrayTwo[idx2];
 		if (firstNum < secondNum) {
 			current = secondNum - firstNum;
 			idx1++;

@@ -12,11 +12,11 @@ Input:
 Output:
 [2,3]
 */
-const findDuplicates = function(nums) {
-	let res = [];
-	let n = nums.length;
+const findDuplicates = function (nums) {
+	const res = [];
+	const n = nums.length;
 	for (let i = 0; i < n; i++) {
-		let num = nums[i];
+		const num = nums[i];
 		if (nums[Math.abs(num) - 1] < 0) {
 			res.push(Math.abs(num));
 		}

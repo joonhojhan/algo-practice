@@ -12,15 +12,19 @@ function ListNode(val) {
 	this.next = null;
 }
 
-const mergeTwoLists = function(l1, l2) {
-	let curr1 = l1,
-		curr2 = l2;
+const mergeTwoLists = function (l1, l2) {
+	let curr1 = l1;
+	let curr2 = l2;
 	if (!l1 && !l2) return null;
 	if (!l1) return l2;
 	if (!l2) return l1;
-	let res =
+	const res =
 		curr1.val > curr2.val ? new ListNode(curr2.val) : new ListNode(curr1.val);
-	curr1.val > curr2.val ? (curr2 = curr2.next) : (curr1 = curr1.next);
+	if (curr1.val > curr2.val) {
+		curr2 = curr2.next;
+	} else {
+		curr1 = curr1.next;
+	}
 	let currRes = res;
 	while (curr1 && curr2) {
 		if (curr1.val > curr2.val) {
@@ -33,6 +37,10 @@ const mergeTwoLists = function(l1, l2) {
 			currRes = currRes.next;
 		}
 	}
-	curr1 ? (currRes.next = curr1) : (currRes.next = curr2);
+	if (curr1) {
+		currRes.next = curr1;
+	} else {
+		currRes.next = curr2;
+	}
 	return res;
 };

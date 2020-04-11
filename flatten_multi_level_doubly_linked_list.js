@@ -59,10 +59,10 @@ Merging the serialization of each level and removing trailing nulls we obtain:
 [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
 */
 
-const flatten = function(head) {
+const flatten = function (head) {
 	let curr = head;
 	while (curr) {
-		let next = curr.next;
+		const next = curr.next;
 		if (curr.child) {
 			curr.next = flatten(curr.child);
 			curr.next.prev = curr;

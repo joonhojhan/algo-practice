@@ -14,7 +14,10 @@ function multiDimSum(arr) {
 function multiDimSumFlatten(arr) {
 	return String(arr)
 		.split(',')
-		.reduce((acc, el) => (acc += Number(el)), 0);
+		.reduce((acc, el) => {
+			acc += Number(el);
+			return acc;
+		}, 0);
 }
 
 console.log(multiDimSum([1, 2, 3]));

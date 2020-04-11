@@ -44,7 +44,7 @@ Since the character "a" does not repeat, it is not compressed. "bbbbbbbbbbbb" is
 Notice each digit has it's own entry in the array.
 */
 
-const compress = function(chars) {
+const compress = function (chars) {
 	let read = 0;
 	let readAhead = read + 1;
 	let write = 0;
@@ -58,8 +58,8 @@ const compress = function(chars) {
 			read++;
 			readAhead = read + 1;
 		} else {
-			let countStr = String(count);
-			let countLength = countStr.length;
+			const countStr = String(count);
+			const countLength = countStr.length;
 			write = read + 1;
 			for (let i = 0; i < countLength; i++) {
 				chars[write + i] = countStr[i];
@@ -72,10 +72,10 @@ const compress = function(chars) {
 	}
 };
 
-let test1 = ['a', 'a', 'b', 'b', 'c', 'c', 'c'];
-let test2 = ['a'];
-let test3 = ['a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'];
-let test4 = [
+const test1 = ['a', 'a', 'b', 'b', 'c', 'c', 'c'];
+const test2 = ['a'];
+const test3 = ['a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'];
+const test4 = [
 	'a',
 	'a',
 	'a',

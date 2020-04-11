@@ -37,7 +37,7 @@ const longestPalindrome = function(s) {
 };
 */
 
-const getLongestPalindrome = function(str, left, right) {
+const getLongestPalindrome = function (str, left, right) {
 	while (left >= 0 && right < str.length) {
 		if (str[left] !== str[right]) break;
 		left--;
@@ -46,12 +46,12 @@ const getLongestPalindrome = function(str, left, right) {
 	return [left + 1, right];
 };
 
-const longestPalindrome = function(s) {
+const longestPalindrome = function (s) {
 	let currLongest = [0, 1];
 	for (let i = 0; i < s.length; i++) {
-		let odd = getLongestPalindrome(s, i - 1, i + 1);
-		let even = getLongestPalindrome(s, i, i + 1);
-		let longest = odd[1] - odd[0] > even[1] - even[0] ? odd : even;
+		const odd = getLongestPalindrome(s, i - 1, i + 1);
+		const even = getLongestPalindrome(s, i, i + 1);
+		const longest = odd[1] - odd[0] > even[1] - even[0] ? odd : even;
 		currLongest =
 			currLongest[1] - currLongest[0] > longest[1] - longest[0]
 				? currLongest

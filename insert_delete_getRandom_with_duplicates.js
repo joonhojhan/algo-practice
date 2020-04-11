@@ -32,7 +32,7 @@ collection.getRandom();
 /**
  * Initialize your data structure here.
  */
-var RandomizedCollection = function() {
+const RandomizedCollection = function () {
 	this.hash = {};
 	this.allElements = [];
 	this.size = 0;
@@ -48,15 +48,15 @@ function Node(val, idx) {
  * @param {number} val
  * @return {boolean}
  */
-RandomizedCollection.prototype.insert = function(val) {
+RandomizedCollection.prototype.insert = function (val) {
 	if (!this.hash[val]) {
-		let node = new Node(val, this.size);
+		const node = new Node(val, this.size);
 		this.hash[val] = [node];
 		this.allElements.push(node);
 		this.size++;
 		return true;
 	}
-	let node = new Node(val, this.size);
+	const node = new Node(val, this.size);
 	this.hash[val].push(node);
 	this.allElements.push(node);
 	this.size++;
@@ -68,7 +68,7 @@ RandomizedCollection.prototype.insert = function(val) {
  * @param {number} val
  * @return {boolean}
  */
-RandomizedCollection.prototype.remove = function(val) {
+RandomizedCollection.prototype.remove = function (val) {
 	if (this.hash[val]) {
 		this.allElements[this.size - 1].idx = this.hash[val][
 			this.hash[val].length - 1
@@ -93,7 +93,7 @@ RandomizedCollection.prototype.remove = function(val) {
  * Get a random element from the set.
  * @return {number}
  */
-RandomizedCollection.prototype.getRandom = function() {
+RandomizedCollection.prototype.getRandom = function () {
 	return this.allElements[Math.floor(Math.random() * this.size)].val;
 };
 

@@ -21,14 +21,14 @@ cache.get(3);       // returns 3
 cache.get(4);       // returns 4
 */
 
-const Node = function(key, val) {
+const Node = function (key, val) {
 	this.key = key;
 	this.value = val;
 	this.prev = null;
 	this.next = null;
 };
 
-const LRUCache = function(capacity) {
+const LRUCache = function (capacity) {
 	this.head = new Node(0, 0);
 	this.tail = new Node(0, 0);
 	this.head.next = this.tail;
@@ -37,12 +37,12 @@ const LRUCache = function(capacity) {
 	this.capacity = 0;
 	this.max = capacity;
 
-	this.deleteNode = function(node) {
+	this.deleteNode = function (node) {
 		node.prev.next = node.next;
 		node.next.prev = node.prev;
 	};
 
-	this.addToHead = function(node) {
+	this.addToHead = function (node) {
 		node.next = this.head.next;
 		node.prev = this.head;
 		node.next.prev = node;
@@ -50,7 +50,7 @@ const LRUCache = function(capacity) {
 	};
 };
 
-LRUCache.prototype.get = function(key) {
+LRUCache.prototype.get = function (key) {
 	if (this.hash[key] !== undefined) {
 		this.deleteNode(this.hash[key]);
 		this.addToHead(this.hash[key]);
@@ -59,13 +59,13 @@ LRUCache.prototype.get = function(key) {
 	return -1;
 };
 
-LRUCache.prototype.put = function(key, value) {
+LRUCache.prototype.put = function (key, value) {
 	if (this.hash[key] !== undefined) {
 		this.hash[key].value = value;
 		this.deleteNode(this.hash[key]);
 		this.addToHead(this.hash[key]);
 	} else {
-		let node = new Node(key, value);
+		const node = new Node(key, value);
 		if (this.capacity < this.max) {
 			this.capacity++;
 		} else {
@@ -77,7 +77,7 @@ LRUCache.prototype.put = function(key, value) {
 	}
 };
 
-let cache = new LRUCache(2);
+const cache = new LRUCache(2);
 cache.put(1, 1);
 cache.put(2, 2);
 console.log(cache.get(1)); // returns 1

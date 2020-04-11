@@ -22,19 +22,8 @@ So we return the level with the maximum sum which is level 2.
  * }
  */
 
-const maxLevelSum = function(root) {
-	let levels = {};
-	dfs(root);
-	let maxSum = -Infinity;
-	let maxSumLevel = -1;
-	for (let key in levels) {
-		let levelSum = Number(levels[key]);
-		if (levelSum > maxSum) {
-			maxSum = levelSum;
-			maxSumLevel = Number(key);
-		}
-	}
-	return maxSumLevel;
+const maxLevelSum = function (root) {
+	const levels = {};
 	function dfs(node, level = 1) {
 		if (!levels[level]) {
 			levels[level] = node.val;
@@ -48,4 +37,15 @@ const maxLevelSum = function(root) {
 			dfs(node.right, level + 1);
 		}
 	}
+	dfs(root);
+	let maxSum = -Infinity;
+	let maxSumLevel = -1;
+	for (const key in levels) {
+		const levelSum = Number(levels[key]);
+		if (levelSum > maxSum) {
+			maxSum = levelSum;
+			maxSumLevel = Number(key);
+		}
+	}
+	return maxSumLevel;
 };

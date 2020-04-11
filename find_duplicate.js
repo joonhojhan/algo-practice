@@ -1,6 +1,6 @@
-const findDuplicate = nums => {
-	let h = nums[0],
-		t = nums[0];
+const findDuplicate = (nums) => {
+	let h = nums[0];
+	let t = nums[0];
 	do {
 		t = nums[t];
 		h = nums[h];

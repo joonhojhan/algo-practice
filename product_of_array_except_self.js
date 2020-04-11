@@ -8,9 +8,9 @@ Output: [24,12,8,6]
 Note: Please solve it without division and in O(n).
 */
 
-const productExceptSelf = function(nums) {
-	let n = nums.length;
-	let res = Array(n);
+const productExceptSelf = function (nums) {
+	const n = nums.length;
+	const res = Array(n);
 	res[0] = 1;
 	for (let i = 1; i < n; i++) {
 		res[i] = res[i - 1] * nums[i - 1];

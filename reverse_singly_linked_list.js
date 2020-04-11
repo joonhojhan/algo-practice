@@ -1,7 +1,7 @@
-const reverseList = head => {
-	let prev = null,
-		curr = head,
-		next = null;
+const reverseList = (head) => {
+	let prev = null;
+	let curr = head;
+	let next = null;
 	while (curr !== null) {
 		next = curr.next;
 		curr.next = prev;

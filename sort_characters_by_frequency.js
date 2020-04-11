@@ -35,14 +35,14 @@ Explanation:
 "bbaA" is also a valid answer, but "Aabb" is incorrect.
 Note that 'A' and 'a' are treated as two different characters.
 */
-const frequencySort = function(s) {
-	let memo = {};
-	let resArr = [];
-	for (let char of s) {
+const frequencySort = function (s) {
+	const memo = {};
+	const resArr = [];
+	for (const char of s) {
 		if (memo[char]) memo[char]++;
 		else memo[char] = 1;
 	}
-	for (let char in memo) {
+	for (const char in memo) {
 		resArr.push({ char, freq: memo[char] });
 	}
 	return resArr

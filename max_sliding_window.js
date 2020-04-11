@@ -19,9 +19,9 @@ Note:
 You may assume k is always valid, 1 ≤ k ≤ input array's size for non-empty array.
 */
 
-const maxSlidingWindow = function(nums, k) {
-	let res = [];
-	let curr = [];
+const maxSlidingWindow = function (nums, k) {
+	const res = [];
+	const curr = [];
 	for (let i = 0; i < k; i++) {
 		curr.push(nums[i]);
 	}

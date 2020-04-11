@@ -18,10 +18,8 @@ by a path of the same color as the starting pixel are colored with the new color
 Note the bottom corner is not colored 2, because it is not 4-directionally connected
 to the starting pixel.
 */
-const floodFill = function(image, sr, sc, newColor) {
-	let startingColor = image[sr][sc];
-	fill(image, sr, sc);
-	return image;
+const floodFill = function (image, sr, sc, newColor) {
+	const startingColor = image[sr][sc];
 	function fill(grid, row, col) {
 		if (
 			row < 0 ||
@@ -39,6 +37,8 @@ const floodFill = function(image, sr, sc, newColor) {
 		fill(grid, row, col - 1);
 		fill(grid, row, col + 1);
 	}
+	fill(image, sr, sc);
+	return image;
 };
 
 console.log(

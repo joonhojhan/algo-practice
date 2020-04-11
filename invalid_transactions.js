@@ -30,30 +30,30 @@ Each {time} consist of digits, and represent an integer between 0 and 1000.
 Each {amount} consist of digits, and represent an integer between 0 and 2000.
 */
 
-const Transaction = function(name, mins, amount, city) {
+const Transaction = function (name, mins, amount, city) {
 	this.name = name;
 	this.mins = mins;
 	this.amount = amount;
 	this.city = city;
 };
 
-var invalidTransactions = function(transactions) {
-	let res = [];
-	let invalids = {};
-	let trans = {};
+const invalidTransactions = function (transactions) {
+	const res = [];
+	const invalids = {};
+	const trans = {};
 	for (let i = 0; i < transactions.length; i++) {
-		let el = transactions[i];
-		let elArr = el.split(',');
-		let name = elArr[0];
-		let mins = Number(elArr[1]);
-		let amount = Number(elArr[2]);
-		let city = elArr[3];
-		let newTransaction = new Transaction(name, mins, amount, city);
+		const el = transactions[i];
+		const elArr = el.split(',');
+		const name = elArr[0];
+		const mins = Number(elArr[1]);
+		const amount = Number(elArr[2]);
+		const city = elArr[3];
+		const newTransaction = new Transaction(name, mins, amount, city);
 		if (newTransaction.amount > 1000) {
 			invalids[JSON.stringify(newTransaction)] = true;
 		}
 		if (trans[name]) {
-			for (let node of trans[name]) {
+			for (const node of trans[name]) {
 				if (newTransaction.city !== node.city) {
 					let diff = newTransaction.mins - node.mins;
 					diff = diff < 0 ? -diff : diff;

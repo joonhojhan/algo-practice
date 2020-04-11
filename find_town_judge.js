@@ -34,14 +34,14 @@ Input: N = 4, trust = [[1,3],[1,4],[2,3],[2,4],[4,3]]
 Output: 3
 */
 
-const findJudge = function(N, trust) {
+const findJudge = function (N, trust) {
 	if (!trust.length) return N;
-	let trustHash = new Map(); // hash for potential judges
-	let personHash = new Set([]); // set to keep track of people in town
-	let n = trust.length;
+	const trustHash = new Map(); // hash for potential judges
+	const personHash = new Set([]); // set to keep track of people in town
+	const n = trust.length;
 	let res = -1;
 	for (let i = 0; i < n; i++) {
-		let person = trust[i];
+		const person = trust[i];
 		// keep track of how many people trust the potential judge
 		if (!trustHash.get(person[1])) {
 			trustHash.set(person[1], 1);

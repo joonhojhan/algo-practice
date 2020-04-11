@@ -8,18 +8,18 @@ Open brackets must be closed in the correct order.
 Note that an empty string is also considered valid.
 */
 function isValid(s) {
-	let opening = new Set(['(', '[', '{']);
-	let pairs = {
+	const opening = new Set(['(', '[', '{']);
+	const pairs = {
 		')': '(',
 		']': '[',
 		'}': '{',
 	};
-	let openStack = [];
-	for (let char of s) {
+	const openStack = [];
+	for (const char of s) {
 		if (opening.has(char)) openStack.push(char);
 		else if (char in pairs) {
-			let currOpening = openStack.pop();
-			let currMatch = pairs[char];
+			const currOpening = openStack.pop();
+			const currMatch = pairs[char];
 			if (currOpening !== currMatch) return false;
 		}
 	}

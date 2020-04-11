@@ -19,12 +19,12 @@ Explanation: The answer is "wke", with the length of 3.
              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 */
 
-const lengthOfLongestSubstring = function(s) {
-	let hash = {};
+const lengthOfLongestSubstring = function (s) {
+	const hash = {};
 	let currLongest = 0;
 	let left = 0;
 	for (let i = 0; i < s.length; i++) {
-		let char = s[i];
+		const char = s[i];
 		hash[char] = hash[char] ? hash[char] + 1 : 1;
 		while (hash[char] > 1) {
 			hash[s[left]]--;

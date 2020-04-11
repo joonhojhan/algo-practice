@@ -5,7 +5,7 @@ The word can be constructed from letters of sequentially adjacent cell, where "a
 */
 
 // Returns array equivalent to array passed in
-const copyArr = function(arr) {
+const copyArr = function (arr) {
 	const copy = [];
 	for (let i = 0; i < arr.length; i++) {
 		copy.push([]);
@@ -16,7 +16,7 @@ const copyArr = function(arr) {
 	return copy;
 };
 
-const backtrack = function(board, row, col, word, currWord) {
+const backtrack = function (board, row, col, word, currWord) {
 	// return true if word is current word
 	if (word === currWord) return true;
 	// return false if row or col is out of bounds
@@ -24,9 +24,9 @@ const backtrack = function(board, row, col, word, currWord) {
 		return false;
 	// if current word is equal to word sliced at length of current word
 	if (currWord === word.slice(0, currWord.length)) {
-		let currLetter = board[row][col];
+		const currLetter = board[row][col];
 		// copy board because java
-		let newBoard = copyArr(board);
+		const newBoard = copyArr(board);
 		// mark places you've checked
 		newBoard[row][col] = 1;
 		// if backtrack in each direction with new current word returns true, return true
@@ -38,8 +38,8 @@ const backtrack = function(board, row, col, word, currWord) {
 	return false;
 };
 
-const exist = function(board, word) {
-	let currWord = '';
+const exist = function (board, word) {
+	const currWord = '';
 	for (let row = 0; row < board.length; row++) {
 		for (let col = 0; col < board[row].length; col++) {
 			if (board[row][col] === word[0]) {

@@ -80,39 +80,39 @@ Path to get the maximum gold, 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7.
 // 	}
 // };
 
-var getMaximumGold = function(grid) {
+const getMaximumGold = function (grid) {
 	let res = 0;
 	let currentGold = 0;
+	function helper(row, col) {
+		const cellGold = grid[row][col];
+		grid[row][col] = 0;
+		currentGold += cellGold;
+		if (currentGold > res) {
+			res = currentGold;
+		}
+		if (row > 0 && grid[row - 1][col] > 0) {
+			helper(row - 1, col);
+		}
+		if (col > 0 && grid[row][col - 1] > 0) {
+			helper(row, col - 1);
+		}
+		if (row < grid.length - 1 && grid[row + 1][col] > 0) {
+			helper(row + 1, col);
+		}
+		if (col < grid[row].length - 1 && grid[row][col + 1] > 0) {
+			helper(row, col + 1);
+		}
+		grid[row][col] = cellGold;
+		currentGold -= cellGold;
+	}
 	for (let row = 0; row < grid.length; row++) {
-			for (let col = 0; col < grid[row].length; col++) {
-					if (grid[row][col] > 0) {
-							helper(row, col);
-					}
+		for (let col = 0; col < grid[row].length; col++) {
+			if (grid[row][col] > 0) {
+				helper(row, col);
 			}
+		}
 	}
 	return res;
-	function helper(row, col) {
-			let cellGold = grid[row][col]
-			grid[row][col] = 0;
-			currentGold += cellGold;
-			if (currentGold > res) {
-					res = currentGold;
-			}
-			if (row > 0 && grid[row - 1][col] > 0) {
-					helper(row - 1,col)
-			}
-			if (col > 0 && grid[row][col - 1] > 0) {
-					helper(row, col - 1)
-			}
-			if (row < grid.length - 1 && grid[row + 1][col] > 0) {
-					helper(row + 1, col)
-			}
-			if (col < grid[row].length - 1 && grid[row][col + 1] > 0) {
-					helper(row, col + 1)
-			}
-			grid[row][col] = cellGold;
-			currentGold -= cellGold;
-	}
 };
 
 const test1 = [

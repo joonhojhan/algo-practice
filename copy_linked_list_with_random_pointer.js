@@ -29,12 +29,12 @@ Explanation: Given linked list is empty (null pointer), so return null.
 
 // With hash = new Map()
 // Maps in JavaScript allow you to use objects as keys while keys on objects can only be strings
-const copyRandomListMap = function(head) {
+const copyRandomListMap = function (head) {
 	if (!head) return null;
-	let newHead = new Node(head.val);
+	const newHead = new Node(head.val);
 	let curr = head.next;
 	let newCurr = newHead;
-	let hash = new Map();
+	const hash = new Map();
 	hash.set(head, newHead);
 	while (curr) {
 		newCurr.next = new Node(curr.val, null);
@@ -55,19 +55,21 @@ const copyRandomListMap = function(head) {
 };
 
 // With hash = {}
-const copyRandomListObj = function(head) {
+const copyRandomListObj = function (head) {
 	if (!head) return null;
-	let newHead = new Node(head.val);
+	const newHead = new Node(head.val);
 	let curr = head.next;
 	let newCurr = newHead;
-	let hash = {};
+	const hash = {};
 	hash[head.val] = [[head, newHead]];
 	while (curr) {
 		newCurr.next = new Node(curr.val, null);
 		newCurr = newCurr.next;
-		hash[newCurr.val]
-			? hash[newCurr.val].push([curr, newCurr])
-			: (hash[newCurr.val] = [[curr, newCurr]]);
+		if (hash[newCurr.val]) {
+			hash[newCurr.val].push([curr, newCurr]);
+		} else {
+			hash[newCurr.val] = [[curr, newCurr]];
+		}
 		curr = curr.next;
 	}
 	// newCurr.next = curr;
@@ -76,8 +78,10 @@ const copyRandomListObj = function(head) {
 	while (curr) {
 		if (curr.random) {
 			for (let i = 0; i < hash[curr.random.val].length; i++) {
-				let node = hash[curr.random.val][i];
-				if (curr.random === node[0]) newCurr.random = node[1];
+				const node = hash[curr.random.val][i];
+				if (curr.random === node[0]) {
+					newCurr.random = node[1];
+				}
 			}
 		}
 		newCurr = newCurr.next;

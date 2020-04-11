@@ -1,11 +1,11 @@
 /*
 Given a collection of distinct integers, return all possible permutations.
 */
-const permute = nums => {
+const permute = (nums) => {
 	let results = [[nums.shift()]];
 	while (nums.length) {
-		let nextEl = nums.shift();
-		let currentResults = [];
+		const nextEl = nums.shift();
+		const currentResults = [];
 		for (let i = 0; i < results.length; i++) {
 			for (let j = 0; j <= results[i].length; j++) {
 				currentResults.push([

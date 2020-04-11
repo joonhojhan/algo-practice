@@ -14,19 +14,8 @@ Level 2 sum = 7 + 0 = 7.
 Level 3 sum = 7 + -8 = -1.
 So we return the level with the maximum sum which is level 2.
 */
-const maxLevelSum = function(root) {
-	let levels = {};
-	dft(root);
-	let maxSum = -Infinity;
-	let maxSumLevel = -1;
-	for (let key in levels) {
-		let levelSum = Number(levels[key]);
-		if (levelSum > maxSum) {
-			maxSum = levelSum;
-			maxSumLevel = Number(key);
-		}
-	}
-	return maxSumLevel;
+const maxLevelSum = function (root) {
+	const levels = {};
 	function dft(node, level = 1) {
 		if (!levels[level]) {
 			levels[level] = node.val;
@@ -40,4 +29,15 @@ const maxLevelSum = function(root) {
 			dft(node.right, level + 1);
 		}
 	}
+	dft(root);
+	let maxSum = -Infinity;
+	let maxSumLevel = -1;
+	for (const key in levels) {
+		const levelSum = Number(levels[key]);
+		if (levelSum > maxSum) {
+			maxSum = levelSum;
+			maxSumLevel = Number(key);
+		}
+	}
+	return maxSumLevel;
 };

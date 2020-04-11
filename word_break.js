@@ -22,14 +22,14 @@ Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output: false
 */
 
-const wordBreak = function(s, wordDict) {
-	let dict = new Set(wordDict);
-	let dp = new Array(s.length + 1).fill(false);
+const wordBreak = function (s, wordDict) {
+	const dict = new Set(wordDict);
+	const dp = new Array(s.length + 1).fill(false);
 	dp[0] = true;
 	for (let i = 0; i < s.length; i++) {
 		for (let j = i; j >= 0; j--) {
-			let isTrue = dp[j];
-			let word = s.slice(j, i + 1);
+			const isTrue = dp[j];
+			const word = s.slice(j, i + 1);
 			if (isTrue && dict.has(word)) {
 				dp[i + 1] = true;
 			}

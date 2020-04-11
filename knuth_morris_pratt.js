@@ -1,7 +1,7 @@
-const buildLPS = function(patt) {
+const buildLPS = function (patt) {
 	let i = 0;
 	let j = 1;
-	let res = Array(patt.length).fill(0);
+	const res = Array(patt.length).fill(0);
 	while (j < patt.length) {
 		if (patt[i] === patt[j]) {
 			res[j] = i + 1;
@@ -17,9 +17,9 @@ const buildLPS = function(patt) {
 	return res;
 };
 
-const find = function(str, patt) {
-	let lps = buildLPS(patt);
-	let res = [];
+const find = function (str, patt) {
+	const lps = buildLPS(patt);
+	const res = [];
 	let i = 0;
 	let j = 0;
 	while (i < str.length) {
