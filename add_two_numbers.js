@@ -15,7 +15,7 @@ function ListNode(val) {
 	this.next = null;
 }
 
-const addTwoNumbers = function(l1, l2) {
+const addTwoNumbers = function (l1, l2) {
 	let p1 = l1;
 	let p2 = l2;
 	let carry = 0;
