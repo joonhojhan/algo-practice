@@ -1,102 +1,111 @@
 class MaxBinaryHeap {
 	constructor() {
-		this.values = [];
+		this.items = [];
 	}
 
 	getValues() {
-		return this.values;
+		return this.items;
 	}
 
-	insert(value) {
-		// push value to insert into values array, this will put the value in the last position in the heap
-		this.values.push(value);
-		// initialize index to be the last position in the array
-		let childIdx = this.values.length - 1;
-		const child = this.values[childIdx];
-		// loop until the index reaches the top of the heap
-		while (childIdx) {
-			// initialize parent index to be the floor of (index - 1 / 2)
-			const parentIdx = Math.floor((childIdx - 1) / 2);
-			const parent = this.values[parentIdx];
-			// break out of loop if the parent value is greater than or equal to the child value
-			if (child <= parent) break;
-			// swap the parent value and the child value
-			this.values[parentIdx] = child;
-			this.values[childIdx] = parent;
-			childIdx = parentIdx;
+	childIndexes(idx) {
+		return [idx * 2 + 1, idx * 2 + 2];
+	}
+
+	parentIndex(idx) {
+		return Math.floor((idx - 1) / 2);
+	}
+
+	swap(idx1, idx2) {
+		[this.items[idx1], this.items[idx2]] = [this.items[idx2], this.items[idx1]];
+	}
+
+	heapifyUp() {
+		let currentIdx = this.items.length - 1;
+		// while currentIdx is not at the top of the binary heap and the priority of the current index's priority is les than its
+		while (
+			currentIdx > 0 &&
+			this.items[currentIdx] > this.items[this.parentIndex(currentIdx)]
+		) {
+			this.swap(currentIdx, this.parentIndex(currentIdx));
+			currentIdx = this.parentIndex(currentIdx);
+		}
+	}
+
+	insert(data) {
+		this.items.push(data);
+		this.heapifyUp();
+	}
+
+	heapifyDown(idx = 0) {
+		let currentIdx = idx;
+		let [left, right] = this.childIndexes(currentIdx);
+		let largerIdx;
+		const length = this.items.length;
+		while (left < length) {
+			if (right < length)
+				largerIdx = this.items[left] >= this.items[right] ? left : right;
+			else largerIdx = left;
+			if (this.items[currentIdx] < this.items[largerIdx]) {
+				this.swap(largerIdx, currentIdx);
+				currentIdx = largerIdx;
+				[left, right] = this.childIndexes(currentIdx);
+				// else return
+			} else return;
 		}
 	}
 
 	popMax() {
-		// grab the the first element in the heap
-		const popped = this.values[0];
-		// swap the first and the last element in theheap
-		this.values[0] = this.values[this.values.length - 1];
-		this.values[this.values.length - 1] = popped;
-		// heapify down
-		this.heapify();
-		// pop off the last element which should be the top element that was swapped
-		this.values.pop();
-		return popped;
-	}
-
-	// swaps elements in an array given their indexes
-	swap(idx1, idx2) {
-		const temp = this.values[idx1];
-		this.values[idx1] = this.values[idx2];
-		this.values[idx2] = temp;
-	}
-
-	// heapify down
-	heapify() {
-		// initialize index to top of heap
-		let index = 0;
-		// initialize left and right to indexes children using 2 * index + 1 and 2 * index + 2
-		let left = index * 2 + 1;
-		let right = index * 2 + 2;
-		// loop until the value at index pointer is greater than both its children
-		while (
-			this.values[index] < this.values[left] &&
-			this.values[index] < this.values[right]
-		) {
-			// if children are both greater than the value at index pointer swap witht he greater of the two children
-			if (
-				this.values[right] > this.values[index] &&
-				this.values[left] > this.values[index]
-			) {
-				const bigger = this.values[right] > this.values[left] ? right : left;
-				this.swap(bigger, index);
-				index = bigger;
-				left = index * 2 + 1;
-				right = index * 2 + 2;
-				// swap with right element if right element is greater
-			} else if (this.values[right] > this.values[index]) {
-				this.swap(right, index);
-				// reassign index to the swappeed position and left and right to its children
-				index = right;
-				left = index * 2 + 1;
-				right = index * 2 + 2;
-				// swap with left element if left element is greater
-			} else if (this.values[left] > this.values[index]) {
-				this.swap(left, index);
-				// reassign index to the swappeed position and left and right to its children
-				index = left;
-				left = index * 2 + 1;
-				right = index * 2 + 2;
-			}
+		if (this.items.length === 1) {
+			const max = this.items.pop();
+			return max;
 		}
+		const max = this.items[0];
+		this.items[0] = this.items.pop();
+		this.heapifyDown();
+		return max;
+	}
+
+	popNode(idx) {
+		const node = this.items[idx];
+		if (idx === this.items.length - 1) this.items.pop();
+		else this.items[idx] = this.items.pop();
+		this.heapifyDown(idx);
+		return node;
 	}
 }
 const binaryHeap = new MaxBinaryHeap();
 binaryHeap.insert(41);
+binaryHeap.insert(12);
 binaryHeap.insert(39);
 binaryHeap.insert(33);
 binaryHeap.insert(18);
 binaryHeap.insert(27);
-binaryHeap.insert(12);
 binaryHeap.insert(55);
+console.log(binaryHeap.getValues());
 console.log(binaryHeap.popMax());
+console.log(binaryHeap.getValues());
 console.log(binaryHeap.popMax());
+console.log(binaryHeap.getValues());
 console.log(binaryHeap.popMax());
+console.log(binaryHeap.getValues());
+console.log(binaryHeap.popMax());
+console.log(binaryHeap.getValues());
 
 // binaryHeap.getValues();
+const heap = new MaxBinaryHeap();
+const arr = [2, 7, 4, 1, 8, 1];
+for (let i = 0; i < arr.length; i++) {
+	heap.insert(arr[i]);
+}
+console.log(heap.getValues());
+console.log(heap.popMax());
+console.log(heap.getValues());
+console.log(heap.popMax());
+console.log(heap.getValues());
+console.log(heap.popMax());
+console.log(heap.getValues());
+console.log(heap.popMax());
+console.log(heap.getValues());
+console.log(heap.popMax());
+console.log(heap.getValues());
+console.log(heap.popMax());
