@@ -25,25 +25,19 @@ Note:
 */
 
 const minFallingPathSum = function (A) {
-	const dp = [];
-	for (let i = 0; i < A.length; i++) {
-		dp.push([]);
-		for (let j = 0; j < A[0].length; j++) {
-			if (i === 0) dp[i].push(A[i][j]);
-			else dp[i].push(0);
+	let res = Infinity;
+	const h = A.length;
+	const w = A[0].length;
+	if (h === 1) return Math.max(...A[h - 1]);
+	for (let i = 1; i < h; i++) {
+		for (let j = 0; j < w; j++) {
+			if (j === 0) A[i][j] += Math.min(A[i - 1][j], A[i - 1][j + 1]);
+			else if (j === w - 1) A[i][j] += Math.min(A[i - 1][j], A[i - 1][j - 1]);
+			else A[i][j] += Math.min(A[i - 1][j], A[i - 1][j - 1], A[i - 1][j + 1]);
+			if (i === h - 1 && A[i][j] < res) res = A[i][j];
 		}
 	}
-	for (let i = 1; i < A.length; i++) {
-		for (let j = 0; j < A[0].length; j++) {
-			const leftDiag = dp[i - 1][j - 1] + A[i][j];
-			const above = dp[i - 1][j] + A[i][j];
-			const rightDiag = dp[i - 1][j + 1] + A[i][j];
-			if (j === 0) dp[i][j] = Math.min(above, rightDiag);
-			else if (j === A[0].length - 1) dp[i][j] = Math.min(above, leftDiag);
-			else dp[i][j] = Math.min(leftDiag, above, rightDiag);
-		}
-	}
-	return Math.min(...dp[dp.length - 1]);
+	return res;
 };
 
 console.log(
