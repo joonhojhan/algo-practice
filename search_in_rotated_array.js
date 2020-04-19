@@ -21,29 +21,26 @@ Output: -1
 
 // time complexity: O(log(N))
 const search = function (nums, target) {
-	let pivot = 0;
-	while (nums[pivot] < nums[pivot + 1]) {
-		pivot++;
-	}
-	pivot++;
-	const leftArr = nums.slice(0, pivot);
-	const rightArr = nums.slice(pivot);
-	let arr;
-	let isRight = false;
-	if (target < leftArr[0]) {
-		arr = rightArr;
-		isRight = true;
-	} else {
-		arr = leftArr;
-		isRight = false;
-	}
 	let left = 0;
-	let right = arr.length - 1;
+	let right = nums.length - 1;
 	while (left <= right) {
-		const mid = Math.floor((left + right) / 2);
-		if (arr[mid] === target) return isRight ? mid + leftArr.length : mid;
-		else if (arr[mid] < target) left = mid + 1;
-		else right = mid - 1;
+		const mid = Math.floor((left + right) / 2); // find middle index
+		const midVal = nums[mid];
+		if (midVal === target) return mid;
+		// if middle value is target, return middle index
+		else {
+			if (nums[left] <= midVal) {
+				// if left does not contain pivot
+				if (target < midVal && target >= nums[left]) right = mid - 1;
+				// check if target is within left and mid
+				else left = mid + 1;
+			} else {
+				// if right does not contain pivot
+				if (target > midVal && target <= nums[right]) left = mid + 1;
+				// check if target is within mid and right
+				else right = mid - 1;
+			}
+		}
 	}
 	return -1;
 };
