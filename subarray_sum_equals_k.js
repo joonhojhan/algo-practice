@@ -12,14 +12,32 @@ The range of numbers in the array is [-1000, 1000] and the range of the integer 
 
 // O(N^2) time
 // O(1) space
-const subarraySum = function(nums, k) {
+// const subarraySum = function (nums, k) {
+// 	let total = 0;
+// 	for (let i = 0; i < nums.length; i++) {
+// 		let currTotal = 0;
+// 		for (let j = i; j < nums.length; j++) {
+// 			currTotal += nums[j];
+// 			if (currTotal === k) total++;
+// 		}
+// 	}
+// 	return total;
+// };
+
+// O(N) time
+// O(N) space
+const subarraySum = function (nums, k) {
 	let total = 0;
-	for (let i = 0; i < nums.length; i++) {
-		let currTotal = 0;
-		for (let j = i; j < nums.length; j++) {
-			currTotal += nums[j];
-			if (currTotal === k) total++;
-		}
+	let sum = 0;
+	const hash = new Map();
+	const n = nums.length;
+	hash.set(0, 1);
+	for (let i = 0; i < n; i++) {
+		const curr = nums[i];
+		sum += curr;
+		if (hash.has(sum - k)) total += hash.get(sum - k);
+		if (hash.has(sum)) hash.set(sum, hash.get(sum) + 1);
+		else hash.set(sum, 1);
 	}
 	return total;
 };
