@@ -36,23 +36,21 @@ Explanation:
 Note that 'A' and 'a' are treated as two different characters.
 */
 const frequencySort = function (s) {
-	const memo = {};
-	const resArr = [];
+	const memo = Array(95);
+	const offSet = ' '.charCodeAt();
 	for (const char of s) {
-		if (memo[char]) memo[char]++;
-		else memo[char] = 1;
+		const pos = char.charCodeAt() - offSet;
+		if (memo[pos]) memo[pos].freq++;
+		else memo[pos] = { char, freq: 1 };
 	}
-	for (const char in memo) {
-		resArr.push({ char, freq: memo[char] });
+	memo.sort((a, b) => b.freq - a.freq);
+	let res = '';
+	let i = 0;
+	while (memo[i]) {
+		res += memo[i].char.repeat(memo[i].freq);
+		i++;
 	}
-	return resArr
-		.sort((a, b) => b.freq - a.freq)
-		.reduce((res, el) => {
-			for (let i = 0; i < el.freq; i++) {
-				res += el.char;
-			}
-			return res;
-		}, '');
+	return res;
 };
 
 console.log(frequencySort('tree') === 'eetr' || frequencySort('tree') === 'eert');
