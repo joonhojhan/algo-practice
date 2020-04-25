@@ -14,30 +14,15 @@ Explanation:
   5     4       <---
 */
 
-const dft = function (node, hash, depth = 1) {
-	if (!hash[depth]) {
-		hash[depth] = [node.val];
-	} else {
-		hash[depth].push(node.val);
-	}
-	if (node.left) {
-		dft(node.left, hash, depth + 1);
-	}
-	if (node.right) {
-		dft(node.right, hash, depth + 1);
-	}
+const dfs = function (node, res, depth = 0) {
+	if (!node) return;
+	if (!res[depth]) res.push(node.val);
+	dfs(node.right, res, depth + 1);
+	dfs(node.left, res, depth + 1);
 };
 
 const rightSideView = function (root) {
-	if (!root) return [];
-	if (!root.left && !root.right) return [root.val];
-	const hash = {};
 	const res = [];
-	dft(root, hash);
-	for (const d in hash) {
-		const depthArr = hash[d];
-		const lastEl = depthArr[depthArr.length - 1];
-		res.push(lastEl);
-	}
+	dfs(root, res);
 	return res;
 };
