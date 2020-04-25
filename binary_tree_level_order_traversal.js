@@ -17,26 +17,16 @@ return its level order traversal as:
 ]
 */
 
+const dfs = function (node, res, level) {
+	if (!node) return;
+	if (!res[level]) res[level] = [node.val];
+	else res[level].push(node.val);
+	dfs(node.left, res, level + 1);
+	dfs(node.right, res, level + 1);
+};
+
 const levelOrder = function (root) {
 	const res = [];
-	if (!root) return res;
-	const levels = new Map();
-	function dft(node, depth = 1) {
-		if (levels.get(depth)) {
-			levels.get(depth).push(node.val);
-		} else {
-			levels.set(depth, [node.val]);
-		}
-		if (node.left) {
-			dft(node.left, depth + 1);
-		}
-		if (node.right) {
-			dft(node.right, depth + 1);
-		}
-	}
-	dft(root);
-	levels.forEach((val) => {
-		res.push(val);
-	});
+	dfs(root, res, 0);
 	return res;
 };
