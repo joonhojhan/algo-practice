@@ -73,7 +73,6 @@ const FirstUnique = function (nums) {
 	this.tail = new Node(0);
 	this.head.next = this.tail;
 	this.tail.prev = this.head;
-	this.size = 0;
 
 	this.addToTail = function (node) {
 		node.next = this.tail;
@@ -86,7 +85,6 @@ const FirstUnique = function (nums) {
 		if (node === 'deleted') return;
 		node.next.prev = node.prev;
 		node.prev.next = node.next;
-		this.size--;
 	};
 	for (let i = 0; i < nums.length; i++) {
 		const curr = nums[i];
@@ -98,7 +96,7 @@ const FirstUnique = function (nums) {
  * @return {number}
  */
 FirstUnique.prototype.showFirstUnique = function () {
-	if (this.size > 0) return this.head.next.val;
+	if (this.head.next !== this.tail) return this.head.next.val;
 	return -1;
 };
 
@@ -114,6 +112,5 @@ FirstUnique.prototype.add = function (value) {
 		const newNode = new Node(value);
 		this.hash[value] = newNode;
 		this.addToTail(this.hash[value]);
-		this.size++;
 	}
 };
