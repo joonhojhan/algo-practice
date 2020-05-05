@@ -75,7 +75,7 @@ const maxPopulation = function (years) {
 		if (currDeathYear < maxBirthYear) birthYears[currDeathYear - offset]--;
 	}
 	let currPopulation = 0;
-	let population = -Infinity;
+	let population = 0;
 	let res;
 	for (let i = 0; i < m; i++) {
 		const curr = birthYears[i];
