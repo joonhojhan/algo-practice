@@ -70,7 +70,7 @@ const maxPopulation = function (years) {
 	const offset = minBirthYear;
 	for (let i = 0; i < n; i++) {
 		const currBirthYear = years[i][0];
-		const currDeathYear = years[i][1];
+		const currDeathYear = years[i][1] + 1;
 		birthYears[currBirthYear - offset]++;
 		if (currDeathYear < maxBirthYear) birthYears[currDeathYear - offset]--;
 	}
