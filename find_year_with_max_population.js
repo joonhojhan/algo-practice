@@ -65,7 +65,7 @@ const maxPopulation = function (years) {
 		minBirthYear = Math.min(minBirthYear, years[i][0]);
 		maxBirthYear = Math.max(maxBirthYear, years[i][1]);
 	}
-	const birthYears = Array(maxBirthYear - minBirthYear).fill(0);
+	const birthYears = Array(maxBirthYear - minBirthYear + 1).fill(0);
 	const m = birthYears.length;
 	const offset = minBirthYear;
 	for (let i = 0; i < n; i++) {
