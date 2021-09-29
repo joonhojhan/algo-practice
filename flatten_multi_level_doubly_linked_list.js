@@ -59,21 +59,45 @@ Merging the serialization of each level and removing trailing nulls we obtain:
 [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
 */
 
+// Using recursion
 const flatten = function (head) {
-	let curr = head;
-	while (curr) {
-		const next = curr.next;
-		if (curr.child) {
-			curr.next = flatten(curr.child);
-			curr.next.prev = curr;
-			curr.child = null;
-			while (curr.next) {
-				curr = curr.next;
-			}
-			if (next) next.prev = curr;
-			curr.next = next;
-		}
-		curr = curr.next;
-	}
-	return head;
-};
+  let curr = head
+  while (curr) {
+    const next = curr.next
+    if (curr.child) {
+      curr.next = flatten(curr.child)
+      curr.next.prev = curr
+      curr.child = null
+      while (curr.next) {
+        curr = curr.next
+      }
+      if (next) next.prev = curr
+      curr.next = next
+    }
+    curr = curr.next
+  }
+  return head
+}
+
+// Using stack
+const flatten = function (head) {
+  const stack = []
+  let curr = head
+  while (curr) {
+    if (curr.child) {
+      if (curr.next) {
+        stack.push(curr.next)
+      }
+      curr.child.prev = curr
+      curr.next = curr.child
+      curr.child = null
+    }
+    if (!curr.next && stack.length) {
+      const popped = stack.pop()
+      curr.next = popped
+      popped.prev = curr
+    }
+    curr = curr.next
+  }
+  return head
+}
